@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>S2 CES Project Learning Guide | 中二公民、經濟與社會 · 專題研習自學</title>
+<style>
+:root{--paper:#f3eee4;--card:#fffdf9;--ink:#1c1916;--muted:#5e564e;--line:#e4d8c6;--accent:#8d3424;--accent-dark:#6e271b;--soft:#f8ebe6;--chip:#fff;--shadow:0 12px 32px rgba(70,42,22,.06);--sans:"PingFang HK","PingFang TC","Noto Sans CJK TC","Noto Sans TC","Microsoft JhengHei","Heiti TC","Segoe UI",sans-serif;--serif:"Songti TC","Source Han Serif TC","Noto Serif CJK TC","PMingLiU","Times New Roman",serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65}
+.skip{position:absolute;left:12px;top:-40px;background:var(--accent);color:#fff;padding:8px 12px;z-index:20}.skip:focus{top:8px}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 64px}
+header.top{position:sticky;top:0;z-index:8;background:rgba(243,238,228,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 16px 10px}
+header.top .inner{max-width:760px;margin:0 auto}
+.kicker{margin:0;font-size:13px;letter-spacing:.04em;color:var(--accent);font-weight:700}
+h1{font-family:var(--serif);font-size:1.45rem;line-height:1.35;margin:4px 0 2px;font-weight:700}
+.en-desc{display:block;font-weight:500;font-size:.95em;line-height:1.45;margin-top:2px;color:var(--ink)}
+.zh,.en{display:block;color:var(--muted);font-weight:500;font-size:.92em;line-height:1.45;margin-top:2px}
+h1 .zh,h1 .en{font-family:var(--sans);font-size:.78em;font-weight:600}
+.btn .zh,.btn .en{color:rgba(255,255,255,.92);font-weight:600}
+.btn.secondary .zh,.btn.quiet .zh,.btn.secondary .en,.btn.quiet .en{color:var(--muted)}
+.save-line{margin:6px 0 8px;font-size:14px;color:var(--muted)}
+.bar{height:8px;background:#e7dfd2;border-radius:99px;overflow:hidden}.bar>span{display:block;height:100%;width:0;background:var(--accent);border-radius:99px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.steps button,button,.seed,.ex-pick{font-family:inherit}
+.steps button{appearance:none;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:12px;min-height:56px;padding:6px 4px;cursor:pointer;text-align:center}
+.steps button .num{display:block;font-weight:750;color:var(--accent);font-size:15px}
+.steps button .lbl{display:block;font-size:12px;line-height:1.25;color:var(--muted)}
+.steps button[aria-current=step]{background:var(--accent);border-color:var(--accent);color:#fff}
+.steps button[aria-current=step] .num,.steps button[aria-current=step] .lbl{color:#fff}
+.steps button.is-done:not([aria-current=step]){background:var(--soft);border-color:#e4c7be}
+.example-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.example-bar .btn{min-height:44px;font-size:15px}
+h2{font-family:var(--serif);font-size:1.45rem;line-height:1.35;margin:0 0 8px}h3{font-size:1.08rem;margin:18px 0 6px}p{margin:8px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px 18px 18px;margin-top:16px}
+.why,.guide-note,.example{border-left:4px solid var(--accent);background:#fbf7f2;padding:12px 14px;border-radius:0 12px 12px 0;margin:12px 0}
+.why{background:var(--soft);border-left:0;border-radius:12px}
+.why strong,.example .tag,.guide-note .tag{color:var(--accent-dark)}.example .tag,.guide-note .tag{font-size:13px;font-weight:750;margin:0 0 4px;color:var(--accent)}
+.weak{color:var(--accent-dark)}label,legend{font-weight:700;display:block;margin-top:14px}fieldset{border:0;margin:0;padding:0}
+.hint{margin:2px 0 6px;color:var(--muted);font-size:15px}
+input[type=text],textarea,select{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid #d9cdb8;border-radius:12px;padding:10px 12px;line-height:1.5}
+textarea{min-height:96px;resize:vertical}
+input[type=radio],input[type=checkbox]{width:1.15em;height:1.15em;accent-color:var(--accent);vertical-align:-.15em;margin-right:6px}
+.choices{display:grid;gap:8px;margin-top:8px}
+.choice{display:block;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;font-weight:600}
+.choice:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.seeds,.ex-picker,.role-grid{display:grid;gap:8px}
+.seed,.ex-pick{text-align:left;width:100%;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+.seed .strand,.ex-pick .strand{font-size:13px;font-weight:750;color:var(--accent);display:block}
+.seed[aria-pressed=true],.ex-pick[aria-pressed=true]{border-color:var(--accent);background:var(--soft)}
+.role-card{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+.role-card strong{display:block;color:var(--accent-dark)}
+.nav-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.btn{appearance:none;border:1.5px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;min-height:48px;padding:8px 16px;font-weight:700;cursor:pointer;font-size:16px;line-height:1.35;text-align:center}
+.btn .en{color:rgba(255,255,255,.92);font-weight:600}
+.btn.secondary{background:#fff;color:var(--accent-dark)}.btn.secondary .en,.btn.quiet .en{color:var(--muted)}
+.btn.quiet{background:transparent;border-color:transparent;color:var(--muted);text-decoration:underline;min-height:44px}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:8px 0 4px}th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}th{background:#f6f0e6}
+.formula{font-family:var(--serif);font-size:1.1rem;background:#fff;border:1px dashed #d2b2a8;border-radius:12px;padding:10px 12px}
+footer{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}
+.sheet h2{font-size:1.35rem}.sheet-block{border-top:1px solid var(--line);padding:10px 0;break-inside:avoid}.sheet-block h3{margin-top:0}
+.pre{white-space:pre-wrap;margin:4px 0}.empty{color:var(--muted)}
+.full-example{background:#fffaf5;border:2px solid #e4c7be;border-radius:18px;box-shadow:var(--shadow);padding:18px 16px;margin:16px auto 0;max-width:760px}
+.full-example[hidden]{display:none!important}
+.full-example .badge{display:inline-block;background:var(--accent);color:#fff;font-size:13px;font-weight:750;border-radius:999px;padding:4px 10px;margin:0 0 8px}
+.full-example .ex-step{border-top:1px solid var(--line);padding:12px 0 4px}.full-example h3{font-family:var(--serif);font-size:1.15rem;margin:0 0 6px}
+.sample-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0 10px}
+.sample-box strong{display:block;font-size:14px;color:var(--accent-dark);margin-bottom:2px}
+.warn-note{background:#fff3e8;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0}
+.checklist{list-style:none;padding:0;margin:8px 0}.checklist li{margin:6px 0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+@media(max-width:640px){body{font-size:17px}h1{font-size:1.22rem}.steps{grid-template-columns:repeat(2,1fr)}.wrap{padding:12px 12px 48px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@page{size:A4;margin:14mm}
+.phase-log-sheet[hidden]{display:none!important}
+.phase-log-sheet:not([hidden]){
+  display:block;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:20px 18px 18px;
+  margin-top:16px;
+  max-width:210mm;
+}
+.phase-log-sheet .log-h{border-bottom:2px solid #8d3424;padding-bottom:8px;margin-bottom:12px}
+.phase-log-sheet .log-h h1{font-family:var(--serif);font-size:1.25rem;margin:0 0 4px;line-height:1.35}
+.phase-log-sheet .log-meta{font-size:14px;color:var(--muted);margin:4px 0}
+.phase-log-sheet .log-block{border-top:1px solid var(--line);padding:8px 0;break-inside:avoid}
+.phase-log-sheet .log-block h3{margin:0 0 4px;font-size:1rem;color:var(--accent-dark)}
+.phase-log-sheet .log-block .pre{white-space:pre-wrap;margin:0;min-height:1.2em}
+.phase-log-sheet .log-foot{margin-top:16px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+.phase-log-sheet .log-banner{background:var(--soft);border-radius:12px;padding:10px 12px;margin:0 0 12px;font-weight:700;color:var(--accent-dark)}
+@media print{
+  header.top,.no-print,footer.site,#full-example{display:none!important}
+  body{background:#fff;font-size:11.5pt}
+  .wrap{max-width:none;padding:0}
+  .card{box-shadow:none;border:0;padding:0;margin:0}
+  [data-panel]{display:none!important}
+  body.printing-summary #panel-summary,body.printing-summary #panel-summary[hidden]{display:block!important}
+  body.printing-summary #phase-log{display:none!important}
+  body.printing-phase-log #panel-summary{display:none!important}
+  body.printing-phase-log #phase-log{display:block!important;border:0;box-shadow:none;padding:0;margin:0;max-width:none}
+  body.printing-phase-log #phase-log[hidden]{display:block!important}
+  body.printing-phase-log .phase-log-sheet .nav-row{display:none!important}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content <span class="zh">跳到內容</span></a>
+<header class="top no-print">
+  <div class="inner">
+    <p class="kicker">S2 · Citizenship, Economics and Society · Project Learning<span class="zh">中二 · 公民、經濟與社會 · 專題研習</span></p>
+    <h1>Follow the teacher’s guidelines, step by step<span class="zh">依照老師指引，逐步完成專題</span></h1>
+    <p class="save-line" id="save-state" aria-live="polite">Your answers stay in this browser. Nothing is uploaded.<span class="zh">答案儲存於本瀏覽器，不會上傳。</span></p>
+    <div class="bar" role="progressbar" id="progress" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-label="完成進度 Completed phases"><span id="progress-fill"></span></div>
+    <nav class="steps" aria-label="四個階段 Four phases">
+      <button type="button" data-goto="0"><span class="num">1</span><span class="lbl">Plan<br>選題計劃</span></button>
+      <button type="button" data-goto="1"><span class="num">2</span><span class="lbl">Collect<br>收集資料</span></button>
+      <button type="button" data-goto="2"><span class="num">3</span><span class="lbl">Report<br>分析報告</span></button>
+      <button type="button" data-goto="3"><span class="num">4</span><span class="lbl">Present<br>匯報反思</span></button>
+    </nav>
+    <div class="example-bar no-print">
+      <button type="button" class="btn secondary" id="toggle-example" aria-expanded="false" aria-controls="full-example">See a full example<span class="zh">查看完整例子</span></button>
+      <button type="button" class="btn quiet" id="fill-example-btn">Fill with selected example (demo)<span class="zh">以選取的例子填入（示範）</span></button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+<aside class="full-example no-print" id="full-example" hidden>
+  <span class="badge">Example · not your answer<span class="zh">範例 · 不是你的答案</span></span>
+  <h2 tabindex="-1">Full samples classmates can reference<span class="zh">同學可參考的完整示範</span></h2>
+  <div class="warn-note">
+    <p><strong>Method demos only — not your assigned topics.</strong> Use them to see how the four phases look; your group still chooses from the curriculum topics in the teacher’s guidelines (including Topic 6).</p>
+    <p class="zh"><strong>這些是方法示範，不是你們要提交的題目。</strong>用來查看四個階段如何書寫；你們仍須從老師指引的課程題目中選擇（包括題目 6）。</p>
+    <p>Do not copy a whole sample to hand in. Not a marked answer.</p>
+    <p class="zh">請不要整份抄寫提交；這不是評分答案。</p>
+  </div>
+  <p><strong>Pick one sample:</strong><span class="zh">選擇一個範例：</span></p>
+  <div class="ex-picker" id="ex-picker" role="listbox" aria-label="Example list / 範例列表"></div>
+  <div id="example-body"></div>
+  <div class="nav-row">
+    <button type="button" class="btn" id="fill-example-btn-2">Fill my answers with this example (demo)<span class="zh">以此例子填入我的答案（示範）</span></button>
+    <button type="button" class="btn secondary" id="close-example">Close example and keep writing<span class="zh">收起例子，繼續自行書寫</span></button>
+  </div>
+</aside>
+<main id="main">
+  <section class="card" data-panel="0">
+    <p class="kicker">Phase 1 · Cycles 1–6 (Early Term 1)<span class="zh">階段 1 · 第 1 至 6 教節（上學期初）</span></p>
+    <h2 tabindex="-1">Topic selection and planning<span class="zh">選題與計劃</span></h2>
+    <div class="guide-note">
+      <p class="tag">Following the teacher’s Project Learning Guidelines<span class="zh">依照老師《專題研習指引》</span></p>
+      <p>Goal: form a group, pick a topic, write inquiry questions, assign roles, design tools. Submit a <strong>1-page Project Proposal</strong>.</p>
+      <p class="zh">目標：分組、選題、寫探究問題、分工、設計收集工具。要交：<strong>一頁計劃書（Project Proposal）</strong>。</p>
+    </div>
+    <p>This page helps you draft the plan. Groups of <strong>4 to 6</strong>; each member needs one core role.</p>
+    <p class="zh">呢頁幫你一步一步寫計劃。小組 <strong>4 至 6 人</strong>；每人要有一個核心角色。</p>
+    <p>Not sure how to write the method? Tap “See a full example” at the top (method demos — not your assigned topics).</p>
+    <p class="zh">若不清楚方法如何書寫，請按頁頂「查看完整例子」（方法示範，不是你們要提交的題目）。</p>
+    <h3>A. Team members (4–6)<span class="zh">A. 組員（4–6 人）</span></h3>
+    <label for="members">Names (mark * for team leader)<span class="zh">組員姓名（可註明誰是組長 *）</span></label>
+    <textarea id="members" data-bind="members" placeholder="e.g. Chan* (leader), Lee…&#10;例如：陳同學*（組長）、李同學……"></textarea>
+    <h3>C. Division of labour: one core role each<span class="zh">C. 分工：每人一個核心角色</span></h3>
+    <p class="hint">Guidelines: each person needs a unique, measurable contribution. Role names follow the teacher’s sheet.</p>
+    <p class="hint zh">指引要求每人有獨特、可量度的貢獻。角色名稱跟老師指引。</p>
+    <div class="role-grid">
+      <div class="role-card"><strong>Team Leader (Project Coordinator)<span class="zh">組長</span></strong><span class="en-desc">Runs the 24-cycle schedule, meetings, teacher updates, deadlines.</span><span class="zh">負責 24 教節進度、召開會議、向老師匯報、提醒限期。</span><label for="roleLeader">Student(s)<span class="zh">負責同學</span></label><input id="roleLeader" type="text" data-bind="roles.leader" placeholder="Name / 姓名"></div>
+      <div class="role-card"><strong>Data Manager<span class="zh">資料管理員</span></strong><span class="en-desc">Collects secondary data, bibliography, survey distribution.</span><span class="zh">收集次級資料、整理參考書目、管理問卷發放。</span><label for="roleData">Student(s)<span class="zh">負責同學</span></label><input id="roleData" type="text" data-bind="roles.data" placeholder="Name / 姓名"></div>
+      <div class="role-card"><strong>Data Analyst &amp; Lead Writer<span class="zh">分析兼主筆</span></strong><span class="en-desc">Turns data into charts; drafts analysis and recommendations.</span><span class="zh">把資料製成圖表，起草分析與建議。</span><label for="roleAnalyst">Student(s)<span class="zh">負責同學</span></label><input id="roleAnalyst" type="text" data-bind="roles.analyst" placeholder="Name / 姓名"></div>
+      <div class="role-card"><strong>Designer &amp; Slide Creator<span class="zh">設計兼簡報</span></strong><span class="en-desc">Formats the report, slides/poster, and media.</span><span class="zh">報告排版、簡報／海報、多媒體。</span><label for="roleDesign">Student(s)<span class="zh">負責同學</span></label><input id="roleDesign" type="text" data-bind="roles.design" placeholder="Name / 姓名"></div>
+      <div class="role-card"><strong>Proofreader<span class="zh">校對兼對外</span></strong><span class="en-desc">Contacts interviewees/sites, proofreads, submits files.</span><span class="zh">聯絡受訪者／實地考察、校對全文、提交文件。</span><label for="roleProof">Student(s)<span class="zh">負責同學</span></label><input id="roleProof" type="text" data-bind="roles.proof" placeholder="Name / 姓名"></div>
+    </div>
+    <h3>B. Choose a topic from the curriculum options<span class="zh">B. 從課程選項選擇題目</span></h3>
+    <p>Guidelines: select <strong>one</strong> from the suggested topics. Tap to fill, then narrow your focus.</p>
+    <p class="zh">指引要求從建議題目中選擇<strong>一個</strong>。按一下即可填入，然後收窄焦點。</p>
+    <div class="seeds" id="seeds">
+      <button type="button" class="seed" data-topic="本港青少年網絡成癮的成因、影響及預防" data-strand="公民／社會"><span class="strand">Topic 1 · Youth behaviour &amp; holistic health<span class="zh">題目 1 · 青年行為與全人健康</span></span><span>Healthy connection or digital trap? Internet addiction among HK youth</span><span class="zh">「網」羅健康或陷阱？本港青少年網絡成癮</span></button>
+      <button type="button" class="seed" data-topic="青少年誤用「太空油」或大麻的現況與抗毒策略（必須跟老師安全指引）" data-strand="公民"><span class="strand">Topic 2 · Resisting temptation &amp; law-abiding awareness<span class="zh">題目 2 · 抗拒誘惑與守法</span></span><span>Crossroads: anti-drug awareness (follow teacher safety rules)</span><span class="zh">迷途與抉擇：抗毒意識（須跟從老師安全指引進行）</span></button>
+      <button type="button" class="seed" data-topic="中學生對網絡欺凌的認知、應對與預防" data-strand="公民／社會"><span class="strand">Topic 3 · Campus &amp; online social environment<span class="zh">題目 3 · 校園與網上社交</span></span><span>Refuse to be a bystander: cyberbullying awareness (help-seeking; no real cases named)</span><span class="zh">拒絕旁觀：網絡欺凌的認知與預防（聚焦求助，不公開個案）</span></button>
+      <button type="button" class="seed" data-topic="基層治理與社區參與：區議會與關愛隊的角色" data-strand="公民"><span class="strand">Topic 4 · Political structure of the HKSAR<span class="zh">題目 4 · 香港特區政治體制</span></span><span>District Councils and Care Teams: district governance and civic engagement</span><span class="zh">區議會與關愛隊：基層治理與社區參與</span></button>
+      <button type="button" class="seed" data-topic="網購與盲盒：青少年消費模式、理財陷阱與價值影響" data-strand="經濟"><span class="strand">Topic 5 · Financial strategies &amp; positive consumption<span class="zh">題目 5 · 理財與正面消費</span></span><span>The e-commerce and blind-box generation: spending and values</span><span class="zh">「網購」與「盲盒」世代的消費與理財</span></button>
+      <button type="button" class="seed" data-topic="壓力下的心靈晴空：本港中學生學習壓力、情緒疏導及青少年支援體系" data-strand="公民／社會"><span class="strand">Topic 6 · Academic stress &amp; mental wellness<span class="zh">題目 6 · 學習壓力與心靈健康</span></span><span>Mental Wellness Under Pressure: Investigating Academic Stress, Coping Strategies, and Youth Support Systems in Hong Kong</span><span class="zh">壓力下的心靈晴空：本港中學生學習壓力、情緒疏導及青少年支援體系之探討</span></button>
+    </div>
+    <label for="topic">Our group topic (you may narrow it)<span class="zh">本組題目（可收窄）</span></label>
+    <textarea id="topic" data-bind="topic" placeholder="Write your focused topic&#10;寫清楚你們要查的焦點"></textarea>
+    <label for="strand">Main strand / area<span class="zh">主要範疇</span></label>
+    <input id="strand" type="text" data-bind="strand" placeholder="e.g. Citizenship / Economics / Society&#10;例如：公民／經濟／社會">
+    <h3>Inquiry questions and objectives<span class="zh">撰寫探究問題與目標</span></h3>
+    <p>A good driving question is clear, answerable with evidence, and not only yes/no.</p>
+    <p class="zh">良好的問題應清楚、可用證據作答，而不只是「是／否」。</p>
+    <p class="formula">In Hong Kong, why does ______ affect ______? What can we do / prevent?<span class="zh">在香港，______ 為什麼會影響 ______？我們可以怎樣做／怎樣預防？</span></p>
+    <div class="example"><p class="tag">Weak vs better<span class="zh">較弱 vs 較好</span></p><p class="weak">Weaker: Is internet addiction good or bad?<span class="zh">較弱：網絡成癮是好是壞？</span></p><p>Better: In Hong Kong, why can heavy screen use affect Form 2 sleep and study? What can schools and families do?</p>
+    <p class="zh">較佳：在香港，過長上網為什麼會影響中二學生的睡眠與學習？學校與家庭可以怎樣預防？</p></div>
+    <label for="question">Core inquiry / driving question<span class="zh">核心探究問題</span></label>
+    <textarea id="question" data-bind="question" placeholder="Write one or two clear questions&#10;寫一至兩條清楚問題"></textarea>
+    <label for="objective">Research objectives<span class="zh">研究目標</span></label>
+    <textarea id="objective" data-bind="objective" placeholder="e.g. find causes and impacts; propose one realistic suggestion&#10;例如：找出成因、影響，提出一個可行建議"></textarea>
+    <h3>Design data-collection tools (plan)<span class="zh">設計收集工具（計劃）</span></h3>
+    <fieldset><legend>Which methods will we use?<span class="zh">我們打算採用哪些方法？</span></legend>
+      <div class="choices">
+        <label class="choice"><input type="checkbox" data-bind="kinds.secondary"> Secondary: news, statistics, government publications<span class="zh">次級資料：新聞、統計、政府刊物</span></label>
+        <label class="choice"><input type="checkbox" data-bind="kinds.survey"> Survey<span class="zh">問卷調查</span></label>
+        <label class="choice"><input type="checkbox" data-bind="kinds.interview"> Interview<span class="zh">訪問</span></label>
+        <label class="choice"><input type="checkbox" data-bind="kinds.visit"> Site visit / observation<span class="zh">實地考察／觀察</span></label>
+      </div>
+    </fieldset>
+    <label for="toolsPlan">Tool drafts<span class="zh">工具草稿（問卷題目／訪問大綱／考察地點）</span></label>
+    <textarea id="toolsPlan" data-bind="toolsPlan" placeholder="Draft 4–6 survey questions, interview asks, or what you will observe where&#10;草擬 4 至 6 條問卷題目，或訪問大綱，或實地觀察內容與地點"></textarea>
+    <h3>Phase 1 deliverable checklist<span class="zh">階段 1 交件核對</span></h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-bind="check1.group"> Group formed (4–6)<span class="zh">已分組（4 至 6 人）</span></label></li>
+      <li><label><input type="checkbox" data-bind="check1.topic"> Topic chosen from curriculum options<span class="zh">已選擇課程選項中的題目</span></label></li>
+      <li><label><input type="checkbox" data-bind="check1.roles"> Each member has a core role<span class="zh">每人已有核心角色</span></label></li>
+      <li><label><input type="checkbox" data-bind="check1.question"> Inquiry questions and objectives written<span class="zh">已撰寫探究問題與目標</span></label></li>
+      <li><label><input type="checkbox" data-bind="check1.tools"> Data-collection tools drafted<span class="zh">已設計收集工具草稿</span></label></li>
+      <li><label><input type="checkbox" data-bind="check1.proposal"> 1-page proposal ready to submit<span class="zh">一頁計劃書已準備提交</span></label></li>
+    </ul>
+    <div class="nav-row no-print">
+      <button type="button" class="btn secondary" data-phase-log="0">Generate A4 data log<span class="zh">產生 A4 資料日誌</span></button>
+      <button type="button" class="btn" data-next>Next phase: collect data<span class="zh">下一階段：收集資料</span></button>
+    </div>
+  </section>
+  <section class="card" data-panel="1" hidden>
+    <p class="kicker">Phase 2 · Cycles 7–12 (Late Term 1)<span class="zh">階段 2 · 第 7 至 12 教節（上學期後期）</span></p>
+    <h2 tabindex="-1">Data collection and field research<span class="zh">收集資料與實地研究</span></h2>
+    <div class="guide-note">
+      <p class="tag">Following teacher guidelines · Phase 2<span class="zh">依照老師指引 Phase 2</span></p>
+      <p>Goal: primary and secondary research. Submit a <strong>mid-project progress log and data drafts</strong>.</p>
+      <p class="zh">目標：做初級同次級研究。要交：<strong>中期進度紀錄＋資料草稿</strong>。</p>
+    </div>
+    <div class="why"><strong>Why it matters<span class="zh">為何重要？</span></strong>
+      <p>Your report needs reliable evidence: news/statistics/government publications, plus survey, interview, or site work.</p>
+    <p class="zh">報告要有可靠證據：新聞／統計／政府刊物，加問卷、訪問或實地。</p>
+    </div>
+    <p>Write the source name and date. Use your own words; do not copy whole paragraphs.</p>
+    <p class="zh">記下出處名稱與日期。用自己的句子書寫，不要整段抄錄。</p>
+    <p>Ask consent before interviewing; no classmates’ full names; no faces in field photos.</p>
+    <p class="zh">訪問前須先徵求同意；勿公開同學全名；實地考察勿拍攝人面。</p>
+    <label for="secondaryLog">Secondary data log<span class="zh">次級資料紀錄（新聞／統計／政府刊物）</span></label>
+    <textarea id="secondaryLog" data-bind="secondaryLog" placeholder="來源、日期、你學到甚麼（用自己的句子）"></textarea>
+    <label for="primaryLog">Primary data log<span class="zh">初級資料紀錄（問卷／訪問／實地）</span></label>
+    <textarea id="primaryLog" data-bind="primaryLog" placeholder="已完成事項、人數、時間地點、初步結果"></textarea>
+    <label for="dataDraft">Preliminary summary<span class="zh">初步整理（圖表重點或主題筆記）</span></label>
+    <textarea id="dataDraft" data-bind="dataDraft" placeholder="以條列寫下兩至三個初步發現"></textarea>
+    <label for="progressLog">Mid-project progress log<span class="zh">中期進度紀錄</span></label>
+    <textarea id="progressLog" data-bind="progressLog" placeholder="哪些已完成、哪些尚未完成、遇到的困難"></textarea>
+    <h3>Phase 2 deliverable checklist<span class="zh">階段 2 交件核對</span></h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-bind="check2.secondary"> Secondary data collected<span class="zh">已收集次級資料</span></label></li>
+      <li><label><input type="checkbox" data-bind="check2.primary"> At least one primary method done<span class="zh">已完成問卷／訪問／實地至少一項</span></label></li>
+      <li><label><input type="checkbox" data-bind="check2.organise"> Organised into notes or chart drafts<span class="zh">已整理成筆記或圖表草稿</span></label></li>
+      <li><label><input type="checkbox" data-bind="check2.log"> Progress log written<span class="zh">中期進度紀錄已寫成</span></label></li>
+    </ul>
+    <div class="nav-row no-print">
+      <button type="button" class="btn secondary" data-phase-log="1">Generate A4 data log<span class="zh">產生 A4 資料日誌</span></button>
+
+      <button type="button" class="btn secondary" data-prev>Back<span class="zh">上一階段</span></button>
+      <button type="button" class="btn" data-next>Next: analysis and report<span class="zh">下一階段：分析同報告</span></button>
+    </div>
+  </section>
+  <section class="card" data-panel="2" hidden>
+    <p class="kicker">Phase 3 · Cycles 13–18 (Early Term 2)<span class="zh">階段 3 · 第 13 至 18 教節（下學期初）</span></p>
+    <h2 tabindex="-1">Data analysis and report writing<span class="zh">分析資料與撰寫報告</span></h2>
+    <div class="guide-note">
+      <p class="tag">Following teacher guidelines · Phase 3<span class="zh">依照老師指引 Phase 3</span></p>
+      <p>Goal: synthesise findings, evaluate social impacts, propose constructive solutions. Submit the <strong>final written report</strong>.</p>
+      <p class="zh">目標：綜合發現、評估社會影響、提出有建設性的建議。要交：<strong>最終書面報告</strong>。</p>
+      <p>Report structure: Introduction, Findings, Analysis, Recommendations, References.</p>
+    <p class="zh">報告結構：導言、發現、分析、建議、參考資料。</p>
+    </div>
+    <label for="intro">Introduction<span class="zh">導言</span></label>
+    <textarea id="intro" data-bind="intro" placeholder="Why the topic matters; your questions&#10;題目為何重要、探究問題是甚麼"></textarea>
+    <label for="findings">Findings (linked to inquiry questions)<span class="zh">發現 Findings</span></label>
+    <textarea id="findings" data-bind="findings" placeholder="初級＋次級發現；至少兩個不同看法"></textarea>
+    <label for="analysis">Analysis (root causes, impacts, perspectives)<span class="zh">分析 Analysis</span></label>
+    <textarea id="analysis" data-bind="analysis" placeholder="解釋原因；不要只抄錄數字"></textarea>
+    <label for="recommendation">Recommendations (who does what; realistic; civic-minded)<span class="zh">建議 Recommendations</span></label>
+    <p class="hint">Submit an <strong>oral presentation (PPT and poster)</strong> plus an <strong>individual reflection log</strong>. About <strong>8 minutes</strong>, plus Q&amp;A and peer evaluation.</p>
+    <p class="zh">不要只寫「大家提高意識」。須說明誰（WHO）做甚麼（WHAT）。</p>
+    <p class="hint zh">Avoid only “everyone should be more aware”. Say WHO does WHAT.</p>
+    <textarea id="recommendation" data-bind="recommendation" placeholder="誰可以做一件具體的事，因為我們發現……"></textarea>
+    <label for="references">References (source names + dates)<span class="zh">參考資料 References</span></label>
+    <textarea id="references" data-bind="references" placeholder="列出次級來源"></textarea>
+    <h3>Phase 3 deliverable checklist<span class="zh">階段 3 交件核對</span></h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-bind="check3.againstQ"> Findings checked against inquiry questions<span class="zh">發現已對應探究問題</span></label></li>
+      <li><label><input type="checkbox" data-bind="check3.roots"> Root causes and realistic recommendations<span class="zh">已寫成因與務實建議</span></label></li>
+      <li><label><input type="checkbox" data-bind="check3.sections"> All five sections present<span class="zh">五個部分齊備：導言／發現／分析／建議／參考</span></label></li>
+      <li><label><input type="checkbox" data-bind="check3.final"> Final written report ready<span class="zh">最終書面報告已準備提交</span></label></li>
+    </ul>
+    <div class="nav-row no-print">
+      <button type="button" class="btn secondary" data-phase-log="2">Generate A4 data log<span class="zh">產生 A4 資料日誌</span></button>
+
+      <button type="button" class="btn secondary" data-prev>Back<span class="zh">上一階段</span></button>
+      <button type="button" class="btn" data-next>Next: present and reflect<span class="zh">下一階段：匯報與反思</span></button>
+    </div>
+  </section>
+  <section class="card" data-panel="3" hidden>
+    <p class="kicker">Phase 4 · Cycles 19–24 (Late Term 2)<span class="zh">階段 4 · 第 19 至 24 教節（下學期後期）</span></p>
+    <h2 tabindex="-1">Presentation and reflection<span class="zh">匯報與反思</span></h2>
+    <div class="guide-note">
+      <p class="tag">Following teacher guidelines · Phase 4<span class="zh">依照老師指引 Phase 4</span></p>
+      <p>Submit an <strong>oral presentation (PPT and poster)</strong> plus an <strong>individual reflection log</strong>. About <strong>8 minutes</strong>, plus Q&amp;A and peer evaluation.</p>
+      <p class="zh">要交：<strong>口述匯報（簡報 PPT ＋海報）</strong>＋<strong>個人反思紀錄</strong>。匯報約 <strong>8 分鐘</strong>，仲有問答同同儕互評。</p>
+    </div>
+    <h3>8-minute presentation outline<span class="zh">8 分鐘匯報大綱</span></h3>
+    <label for="pptOutline">PPT / poster points<span class="zh">簡報／海報重點</span></label>
+    <textarea id="pptOutline" data-bind="pptOutline" placeholder="題目、問題、方法、發現、建議（每部分 1 至 3 點）"></textarea>
+    <label for="qaPrep">Likely Q&amp;A<span class="zh">預計問答</span></label>
+    <textarea id="qaPrep" data-bind="qaPrep" placeholder="兩條可能問題及簡短答法"></textarea>
+    <h3>Individual reflection log<span class="zh">個人反思紀錄</span></h3>
+    <p>Guidelines ask you to reflect on growth in civic awareness, analytical skills, and teamwork.</p>
+    <p class="zh">指引要求反思公民意識、分析能力與小組合作方面的成長。</p>
+    <label for="reflectCivic">Civic awareness<span class="zh">公民意識方面我學到甚麼</span></label>
+    <textarea id="reflectCivic" data-bind="reflectCivic"></textarea>
+    <label for="reflectAnalysis">Analytical skills<span class="zh">分析能力方面我學到甚麼</span></label>
+    <textarea id="reflectAnalysis" data-bind="reflectAnalysis"></textarea>
+    <label for="reflectTeam">Teamwork<span class="zh">小組合作方面我學到甚麼</span></label>
+    <textarea id="reflectTeam" data-bind="reflectTeam"></textarea>
+    <h3>Self-check (criteria from the guidelines)<span class="zh">自我檢查（按指引評分項目）</span></h3>
+    <p class="hint">Max marks below are from the teacher’s guidelines; this page is only a self-check, not your final score.</p>
+    <p class="hint zh">下列最高分由老師指引訂明；本頁僅供自行檢查，不是最終分數。</p>
+    <table>
+      <thead><tr><th>Criteria / 項目</th><th>Ask yourself / 自問</th><th>Max / 最高分</th><th>Me / 自我評估</th></tr></thead>
+      <tbody>
+        <tr><td>內容與知識 Content &amp; Knowledge</td><td>Used subject ideas correctly?<span class="zh">有否正確運用科目概念？</span></td><td>20</td><td><label class="choice"><input type="radio" name="r0" value="done" data-bind="rubric.0"> 已做到 Done</label><label class="choice"><input type="radio" name="r0" value="edit" data-bind="rubric.0"> 尚待修改 Fix</label></td></tr>
+        <tr><td>解難與探究 Problem-Solving &amp; Inquiry</td><td>Clear questions? Reliable evidence?<span class="zh">問題是否清楚？證據是否可靠？</span></td><td>20</td><td><label class="choice"><input type="radio" name="r1" value="done" data-bind="rubric.1"> 已做到 Done</label><label class="choice"><input type="radio" name="r1" value="edit" data-bind="rubric.1"> 尚待修改 Fix</label></td></tr>
+        <tr><td>批判與創意 Critical &amp; Creative Thinking</td><td>Two perspectives? Realistic ideas?<span class="zh">有否兩個角度？建議是否務實？</span></td><td>15</td><td><label class="choice"><input type="radio" name="r2" value="done" data-bind="rubric.2"> 已做到 Done</label><label class="choice"><input type="radio" name="r2" value="edit" data-bind="rubric.2"> 尚待修改 Fix</label></td></tr>
+        <tr><td>協作 Collaboration &amp; Teamwork</td><td>Each role done?<span class="zh">每人是否已履行角色？</span></td><td>15</td><td><label class="choice"><input type="radio" name="r3" value="done" data-bind="rubric.3"> 已做到 Done</label><label class="choice"><input type="radio" name="r3" value="edit" data-bind="rubric.3"> 尚待修改 Fix</label></td></tr>
+        <tr><td>過程紀錄 Process &amp; Documentation</td><td>Logs and drafts kept?<span class="zh">有否進度紀錄與草稿？</span></td><td>10</td><td><label class="choice"><input type="radio" name="r4" value="done" data-bind="rubric.4"> 已做到 Done</label><label class="choice"><input type="radio" name="r4" value="edit" data-bind="rubric.4"> 尚待修改 Fix</label></td></tr>
+        <tr><td>成品質素 Final Product Quality</td><td>Report complete and clear?<span class="zh">報告是否齊全整潔？</span></td><td>10</td><td><label class="choice"><input type="radio" name="r5" value="done" data-bind="rubric.5"> 已做到 Done</label><label class="choice"><input type="radio" name="r5" value="edit" data-bind="rubric.5"> 尚待修改 Fix</label></td></tr>
+        <tr><td>口述匯報 Oral Presentation</td><td>Clear in 8 minutes? Answer Q&amp;A?<span class="zh">8 分鐘能否清楚講述？能否回答提問？</span></td><td>10</td><td><label class="choice"><input type="radio" name="r6" value="done" data-bind="rubric.6"> 已做到 Done</label><label class="choice"><input type="radio" name="r6" value="edit" data-bind="rubric.6"> 尚待修改 Fix</label></td></tr>
+      </tbody>
+    </table>
+    <p class="hint">Total max 100 (from guidelines). Only your teacher gives the final mark.<span class="zh">總分最高 100（按指引）。最終分數由老師評定。</span></p>
+    <h3>Phase 4 deliverable checklist<span class="zh">階段 4 交件核對</span></h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox" data-bind="check4.ppt"> PPT ready<span class="zh">簡報 PPT 已備妥</span></label></li>
+      <li><label><input type="checkbox" data-bind="check4.poster"> Poster ready<span class="zh">海報已備妥</span></label></li>
+      <li><label><input type="checkbox" data-bind="check4.oral"> 8-minute talk practised<span class="zh">已練習 8 分鐘匯報</span></label></li>
+      <li><label><input type="checkbox" data-bind="check4.reflect"> Individual reflection written<span class="zh">個人反思已寫成</span></label></li>
+    </ul>
+    <div class="nav-row no-print">
+      <button type="button" class="btn secondary" data-phase-log="3">Generate A4 data log<span class="zh">產生 A4 資料日誌</span></button>
+
+      <button type="button" class="btn secondary" data-prev>Back<span class="zh">上一階段</span></button>
+      <button type="button" class="btn" data-goto="4">See one-page overview<span class="zh">查看一頁紙總覽</span></button>
+    </div>
+  </section>
+  <section class="card sheet" id="panel-summary" data-panel="4" hidden>
+    <p class="kicker no-print">Project on one page<span class="zh">專題一頁紙總覽</span></p>
+    <h2 tabindex="-1">S2 CES Project Learning · following teacher guidelines<span class="zh">中二 CES 專題研習 · 依照老師指引</span></h2>
+    <p class="hint no-print">Choose “Save as PDF” when printing. For learning — not the final marked answer.</p>
+    <p class="hint no-print zh">列印時可選「儲存成 PDF」。本頁供學習與整理，不是最終評分答案。</p>
+    <div class="sheet-block"><h3>Members and roles<span class="zh">組員與分工</span></h3>
+      <p class="pre" id="sum-members"></p>
+      <p>組長 Leader：<span id="sum-role-leader"></span></p>
+      <p>Data / 資料：<span id="sum-role-data"></span></p>
+      <p>分析 Analyst：<span id="sum-role-analyst"></span></p>
+      <p>設計 Design：<span id="sum-role-design"></span></p>
+      <p>Proof / 校對：<span id="sum-role-proof"></span></p>
+    </div>
+    <div class="sheet-block"><h3>Phase 1 plan<span class="zh">階段 1 計劃</span></h3>
+      <p>Topic / 題目：</p><p class="pre" id="sum-topic"></p>
+      <p>範疇 Strand：<span id="sum-strand"></span></p>
+      <p>探究問題 Question：</p><p class="pre" id="sum-question"></p>
+      <p>目標 Objectives：</p><p class="pre" id="sum-objective"></p>
+      <p>Tools / 工具計劃：</p><p class="pre" id="sum-tools"></p>
+    </div>
+    <div class="sheet-block"><h3>Phase 2 data<span class="zh">階段 2 資料</span></h3>
+      <p>次級 Secondary：</p><p class="pre" id="sum-secondary"></p>
+      <p>初級 Primary：</p><p class="pre" id="sum-primary"></p>
+      <p>Draft / 草稿：</p><p class="pre" id="sum-draft"></p>
+      <p>Log / 進度：</p><p class="pre" id="sum-progress"></p>
+    </div>
+    <div class="sheet-block"><h3>Phase 3 report<span class="zh">階段 3 報告</span></h3>
+      <p>Intro / 導言：</p><p class="pre" id="sum-intro"></p>
+      <p>發現 Findings：</p><p class="pre" id="sum-findings"></p>
+      <p>分析 Analysis：</p><p class="pre" id="sum-analysis"></p>
+      <p>建議 Recommendations：</p><p class="pre" id="sum-rec"></p>
+      <p>參考 References：</p><p class="pre" id="sum-ref"></p>
+    </div>
+    <div class="sheet-block"><h3>Phase 4 present &amp; reflect<span class="zh">階段 4 匯報與反思</span></h3>
+      <p>匯報大綱 Outline：</p><p class="pre" id="sum-ppt"></p>
+      <p>Q&amp;A / 問答：</p><p class="pre" id="sum-qa"></p>
+      <p>反思 Reflection：</p><p class="pre" id="sum-reflect"></p>
+    </div>
+    <div class="sheet-block"><h3>自我檢查 Self-check</h3><ul id="sum-rubric"></ul></div>
+    <p>For learning; your teacher marks with the guidelines. Do not hand in a sample as your own work.</p>
+    <p class="zh">供學習之用；老師按指引評分。請勿把示範例子當作自己的課業提交。</p>
+    <div class="nav-row no-print">
+      <button type="button" class="btn" id="print-btn">Print / Save as PDF<span class="zh">列印／儲存成 PDF</span></button>
+      <button type="button" class="btn secondary" id="download-btn">Download text backup<span class="zh">下載文字備份</span></button>
+      <button type="button" class="btn secondary" data-goto="3">Go back and edit<span class="zh">返回修改</span></button>
+      <button type="button" class="btn quiet" id="clear-btn">Clear and start over<span class="zh">清除並重新開始</span></button>
+    </div>
+  </section>
+
+<section class="phase-log-sheet" id="phase-log" hidden aria-live="polite">
+  <div class="log-h">
+    <h1>CES Project · Phase Data Log<span class="zh">公民、經濟與社會專題 · 階段資料日誌</span></h1>
+    <p class="log-meta" id="phase-log-sub"></p>
+    <p class="log-meta" id="phase-log-meta"></p>
+  </div>
+  <div id="phase-log-body"></div>
+  <p class="log-foot">Student learning record for this phase — not the final marked script.<span class="zh">本階段資料日誌供學習紀錄之用，不是最終評分稿。</span></p>
+  <div class="nav-row no-print">
+    <button type="button" class="btn" id="phase-log-print-btn">Print / Save as PDF (A4)<span class="zh">列印／儲存成 PDF（A4）</span></button>
+    <button type="button" class="btn secondary" id="phase-log-close-btn">Back to edit<span class="zh">返回修改</span></button>
+  </div>
+</section>
+</main>
+<footer class="site">
+  <p>Steps reorganised to follow the school Project Learning Guidelines for learning; your teacher’s requirements and marks are final.<span class="zh">步驟按學校《專題研習指引》重整，供學習之用；最終以老師要求與評分為準。</span></p>
+</footer>
+</div>
+<p id="live" class="visually-hidden" aria-live="polite"></p>
+<noscript><p>請開啟 JavaScript。Please turn on JavaScript.</p></noscript>
+<script>
+(function () {
+  "use strict";
+  var KEY = "ces-s2-bbss-guidelines-v2";
+  var EXAMPLES = [{"id": "plastic", "titleZh": "屋苑的即棄塑膠同回收分類", "titleEn": "Single-use plastic and recycling in a housing estate", "strand": "社會", "strandEn": "Society", "sourceZh": "方法示範（社區環境）。不是指引入面須選擇的課程題目。", "sourceEn": "Method demo (community environment). Not one of the assigned curriculum topics.", "topic": "屋苑即棄塑膠同回收分類", "question": "在香港，屋苑住戶為什麼會把即棄塑膠放錯回收桶？我們可以怎樣做？\nIn Hong Kong, why do housing-estate residents put single-use plastic in the wrong recycling bins? What can we do?", "objective": "找出放錯原因，提出一項屋苑可行的改善行動。\nFind why sorting goes wrong; propose one doable estate-level action.", "kinds": {"secondary": true, "survey": false, "interview": false, "visit": true}, "collectWhat": "次級：從政府網頁查閱乾淨塑膠可否回收。\n初級：連續五日放學後觀察屋苑一個回收點（勿拍攝人面）。\nSecondary: government page on clean plastic rules.\nPrimary: watch one estate recycling point for five weekdays after school (no faces).", "findings": "官方資料：可回收塑膠通常須保持乾淨。觀察：常見帶油漬的外賣盒被放錯。住戶認為標示細小；管理處認為未有清潔——兩個看法。\nOfficial: recyclable plastic usually needs to be clean. Observation: oily takeaway boxes often misplaced. Residents blame tiny signs; management blames dirty containers — two views.", "analysis": "成因包括趕時間、標示不清楚、不知須沖洗。並非「完全沒有回收桶」。\nRoots include rushing, unclear signs, and not knowing rinsing is needed — not “no bins at all”.", "recommendation": "屋苑管理處可於一個月內增設大海報及實物示範架（乾淨膠樽與未沖洗外賣盒）。\nEstate management could, within one month, add a large poster and object demo (clean bottle vs unwashed box).", "presentation": "8 分鐘：題目→問題→方法→發現→建議→Q&A。海報五格同上。\n8 minutes: topic→question→methods→findings→suggestion→Q&A.", "reflection": "學會以觀察與公開資料作為證據，而非只憑感覺得。\nLearned to use observation and open sources as evidence, not only feelings."}, {"id": "lunchprice", "titleZh": "通脹與中學生午餐／零用錢可買到的東西", "titleEn": "Inflation and what Form 2 lunch money can buy", "strand": "經濟", "strandEn": "Economics", "sourceZh": "方法示範（物價與零用錢）。不是指引入面須選擇的課程題目。", "sourceEn": "Method demo (prices and pocket money). Not one of the assigned curriculum topics.", "topic": "通脹與中學生午餐／零用錢購買力", "question": "在香港，物價上升為什麼會影響中二學生以零用錢可購買的午餐？我們可以怎樣做？\nIn Hong Kong, why can rising prices affect what Form 2 students can buy for lunch with pocket money? What can we do?", "objective": "描述物價對午餐選擇的影響，提出一項家庭或個人可行的預算行動。\nDescribe how prices affect lunch choices; propose one family or personal budget action.", "kinds": {"secondary": true, "survey": true, "interview": false, "visit": true}, "collectWhat": "次級：從政府統計公開資料查閱物價大概趨勢。\n初級：問約 10 位同學午餐幾錢；觀察校外兩間小食店標價一星期。\nSecondary: open statistics on recent price trends.\nPrimary: survey about 10 classmates on lunch cost; watch two snack-shop price tags for one week.", "findings": "公開資料反映整體物價會變動。問卷中不少人表示午餐貴了。同學覺得可買的變少；店主提及成本——兩個看法。\nOpen data show the general price level changes. Many surveyed said lunch got dearer. Students feel they can buy less; shopkeepers cite costs — two views.", "analysis": "零用錢不變時，通脹令同樣金錢可購買的數量減少。成因是生活成本上升，而不只是「胡亂消費」。\nWhen pocket money stays flat, inflation means the same money buys less. Root: rising living costs, not only “wasteful spending”.", "recommendation": "家長可每月用十分鐘與子女列出「必要午餐開支與想買小食」，並微調零用錢或節省目標。\nParents could spend ten minutes a month listing must-buy lunch costs vs wants, and slightly adjust pocket money or saving goals.", "presentation": "8 分鐘：簡單圖表＋一個具體建議。\n8 minutes: simple chart + one concrete suggestion.", "reflection": "學會把通脹概念連繫到自己的午餐選擇。\nLearned to link inflation to my own lunch choices."}, {"id": "volunteer", "titleZh": "屋邨長者探訪／鄰里義工：中二生可以點參與", "titleEn": "Visiting older neighbours / estate volunteering: how Form 2 can take part", "strand": "公民／社會", "strandEn": "Citizenship / Society", "sourceZh": "方法示範（社區義工與責任）。不是指引入面須選擇的課程題目。", "sourceEn": "Method demo (community volunteering and responsibility). Not one of the assigned curriculum topics.", "topic": "中二生參與鄰里／屋邨長者義工服務", "question": "在香港，為什麼有中二學生想參與鄰里義工卻又覺得「不知從何入手」？學校或屋邨可以怎樣協助？\nIn Hong Kong, why do some Form 2 students want to volunteer nearby but feel they do not know how to start? How can schools or estates help?", "objective": "了解同學對義工的想法與障礙，提出一項學校可行的起步行動。\nUnderstand student views and barriers; propose one school-level starter action.", "kinds": {"secondary": true, "survey": true, "interview": true, "visit": false}, "collectWhat": "次級：可靠社區／義工機構的公開簡介（安全參與須知）。\n初級：訪問約 12 位同學；可短訪一位老師或社工（須先取得同意）。\nSecondary: open info from a reliable community/volunteer group (safety notes).\nPrimary: survey about 12 classmates; optional short interview with a teacher/social worker (with consent).", "findings": "不少人想幫忙，但擔心不懂做、沒有時間。老師／社工表示有適合中二的簡短活動。兩個看法：學生覺得門檻高；成人認為已有合適起步。\nMany want to help but fear not knowing how or lacking time. Teacher/social worker notes short Form 2-friendly activities exist. Two views: students see a high barrier; adults see a simple start.", "analysis": "障礙主要是資訊與起步步驟不清楚，不一定是「沒有心意」。\nBarriers are mostly unclear information and first steps — not simply “no heart”.", "recommendation": "班主任可在下月班會用 15 分鐘介紹一個經學校認可的鄰里義工機會，並列出報名步驟。\nThe class teacher could use 15 minutes in next month’s class period to introduce one school-approved neighbourhood volunteering chance and list sign-up steps.", "presentation": "8 分鐘加海報：障礙數據加一項起步建議（強調安全與成人陪同）。\n8 minutes + poster: barrier data + one starter suggestion (stress safety and adult supervision).", "reflection": "明白公民責任可以由小型而安全的社區參與開始。\nLearned civic responsibility can start with small, safe community participation."}];
+  var selectedExampleId = "plastic";
+
+  function defaultState() {
+    return {
+      step: 0,
+      members: "",
+      roles: { leader: "", data: "", analyst: "", design: "", proof: "" },
+      topic: "", strand: "", question: "", objective: "",
+      kinds: { secondary: false, survey: false, interview: false, visit: false },
+      toolsPlan: "",
+      check1: { group: false, topic: false, roles: false, question: false, tools: false, proposal: false },
+      secondaryLog: "", primaryLog: "", dataDraft: "", progressLog: "",
+      check2: { secondary: false, primary: false, organise: false, log: false },
+      intro: "", findings: "", analysis: "", recommendation: "", references: "",
+      check3: { againstQ: false, roots: false, sections: false, final: false },
+      pptOutline: "", qaPrep: "", reflectCivic: "", reflectAnalysis: "", reflectTeam: "",
+      rubric: ["", "", "", "", "", "", ""],
+      check4: { ppt: false, poster: false, oral: false, reflect: false }
+    };
+  }
+
+  function merge(base, saved) {
+    if (Array.isArray(base)) {
+      var arr = [];
+      for (var i = 0; i < base.length; i++) {
+        arr[i] = (saved && saved[i] != null) ? (typeof base[i] === "object" && base[i] ? merge(base[i], saved[i]) : saved[i]) : base[i];
+      }
+      return arr;
+    }
+    var out = {};
+    Object.keys(base).forEach(function (key) {
+      if (saved && saved[key] != null && typeof base[key] === "object" && base[key] !== null) out[key] = merge(base[key], saved[key]);
+      else if (saved && typeof base[key] === "boolean") out[key] = !!saved[key];
+      else if (saved && saved[key] != null && typeof base[key] !== "object") out[key] = saved[key];
+      else out[key] = base[key];
+    });
+    return out;
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return defaultState();
+      return merge(defaultState(), JSON.parse(raw));
+    } catch (e) { return defaultState(); }
+  }
+
+  var state = load();
+
+  function getPath(obj, path) {
+    var parts = path.split("."), cur = obj;
+    for (var i = 0; i < parts.length; i++) { if (cur == null) return ""; cur = cur[parts[i]]; }
+    return cur;
+  }
+  function setPath(obj, path, val) {
+    var parts = path.split("."), cur = obj;
+    for (var i = 0; i < parts.length - 1; i++) cur = cur[parts[i]];
+    var last = parts[parts.length - 1];
+    if (Array.isArray(cur)) cur[Number(last)] = val; else cur[last] = val;
+  }
+  function save() {
+    var el = document.getElementById("save-state");
+    try { localStorage.setItem(KEY, JSON.stringify(state)); el.textContent = "Saved in this browser. / 已儲存於本瀏覽器。"; }
+    catch (e) { el.textContent = "Could not save. Please print or download. / 未能儲存。請列印或下載。"; }
+  }
+  function status(msg) { document.getElementById("live").textContent = msg; }
+  function filled(s) { return !!(s && String(s).trim()); }
+
+  function phaseDone() {
+    return [
+      filled(state.topic) && filled(state.question) && filled(state.members),
+      filled(state.secondaryLog) && filled(state.primaryLog) && filled(state.progressLog),
+      filled(state.intro) && filled(state.findings) && filled(state.analysis) && filled(state.recommendation) && filled(state.references),
+      filled(state.pptOutline) && filled(state.reflectCivic) && filled(state.reflectTeam)
+    ];
+  }
+
+  function showOrEmpty(id, value) {
+    var el = document.getElementById(id); if (!el) return;
+    var text = value && String(value).trim() ? String(value).trim() : "(empty) / （未填寫）";
+    el.textContent = text; el.classList.toggle("empty", !(value && String(value).trim()));
+  }
+
+  var rubricNames = [
+    "Content & Knowledge / 內容與知識 (20)",
+    "Problem-Solving & Inquiry / 解難與探究 (20)",
+    "Critical & Creative Thinking / 批判與創意 (15)",
+    "Collaboration & Teamwork / 協作 (15)",
+    "Process & Documentation / 過程紀錄 (10)",
+    "Final Product Quality / 成品質素 (10)",
+    "Oral Presentation / 口述匯報 (10)"
+  ];
+  function rubricWord(v) {
+    if (v === "done") return "Done / 已做到";
+    if (v === "edit") return "Fix / 尚待修改";
+    return "Not chosen / 尚未選擇";
+  }
+
+  function render() {
+    var flags = phaseDone();
+    var n = flags.filter(Boolean).length;
+    document.getElementById("progress").setAttribute("aria-valuenow", String(n));
+    document.getElementById("progress-fill").style.width = (n / 4 * 100) + "%";
+    document.querySelectorAll(".steps button").forEach(function (btn, i) {
+      if (state.step === i) btn.setAttribute("aria-current", "step"); else btn.removeAttribute("aria-current");
+      btn.classList.toggle("is-done", !!flags[i]);
+    });
+    showOrEmpty("sum-members", state.members);
+    showOrEmpty("sum-role-leader", state.roles.leader);
+    showOrEmpty("sum-role-data", state.roles.data);
+    showOrEmpty("sum-role-analyst", state.roles.analyst);
+    showOrEmpty("sum-role-design", state.roles.design);
+    showOrEmpty("sum-role-proof", state.roles.proof);
+    showOrEmpty("sum-topic", state.topic);
+    showOrEmpty("sum-strand", state.strand);
+    showOrEmpty("sum-question", state.question);
+    showOrEmpty("sum-objective", state.objective);
+    showOrEmpty("sum-tools", state.toolsPlan);
+    showOrEmpty("sum-secondary", state.secondaryLog);
+    showOrEmpty("sum-primary", state.primaryLog);
+    showOrEmpty("sum-draft", state.dataDraft);
+    showOrEmpty("sum-progress", state.progressLog);
+    showOrEmpty("sum-intro", state.intro);
+    showOrEmpty("sum-findings", state.findings);
+    showOrEmpty("sum-analysis", state.analysis);
+    showOrEmpty("sum-rec", state.recommendation);
+    showOrEmpty("sum-ref", state.references);
+    showOrEmpty("sum-ppt", state.pptOutline);
+    showOrEmpty("sum-qa", state.qaPrep);
+    showOrEmpty("sum-reflect", ["公民 Civic: " + state.reflectCivic, "分析 Analysis: " + state.reflectAnalysis, "合作 Team: " + state.reflectTeam].join("\n"));
+    var ul = document.getElementById("sum-rubric");
+    if (ul) {
+      ul.innerHTML = "";
+      rubricNames.forEach(function (name, i) {
+        var li = document.createElement("li");
+        li.textContent = name + "： " + rubricWord(state.rubric[i]);
+        ul.appendChild(li);
+      });
+    }
+  }
+
+  function fillForm() {
+    document.querySelectorAll("[data-bind]").forEach(function (el) {
+      var v = getPath(state, el.getAttribute("data-bind"));
+      if (el.type === "checkbox") el.checked = !!v;
+      else if (el.type === "radio") el.checked = el.value === v;
+      else el.value = v == null ? "" : v;
+    });
+    render();
+  }
+
+  function go(n, focusIt) {
+    state.step = n; save();
+    document.querySelectorAll("[data-panel]").forEach(function (panel) {
+      panel.hidden = Number(panel.getAttribute("data-panel")) !== n;
+    });
+    render();
+    if (focusIt) {
+      var h = document.querySelector('[data-panel="' + n + '"] h2');
+      if (h) h.focus();
+      window.scrollTo(0, 0);
+    }
+  }
+
+  document.querySelectorAll("[data-bind]").forEach(function (el) {
+    var evt = (el.type === "radio" || el.type === "checkbox") ? "change" : "input";
+    el.addEventListener(evt, function () {
+      if (el.type === "radio" && !el.checked) return;
+      setPath(state, el.getAttribute("data-bind"), el.type === "checkbox" ? el.checked : el.value);
+      save(); render();
+    });
+  });
+  document.querySelectorAll("[data-goto]").forEach(function (btn) {
+    btn.addEventListener("click", function () { go(Number(btn.getAttribute("data-goto")), true); });
+  });
+  document.querySelectorAll("[data-next]").forEach(function (btn) {
+    btn.addEventListener("click", function () { go(Math.min(4, state.step + 1), true); });
+  });
+  document.querySelectorAll("[data-prev]").forEach(function (btn) {
+    btn.addEventListener("click", function () { go(Math.max(0, state.step - 1), true); });
+  });
+  document.querySelectorAll(".seed").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      state.topic = btn.getAttribute("data-topic");
+      state.strand = btn.getAttribute("data-strand");
+      fillForm(); save();
+      status("Topic added; you may narrow it. / 已填入題目，可再收窄。");
+    });
+  });
+
+  function getExample(id) {
+    for (var i = 0; i < EXAMPLES.length; i++) if (EXAMPLES[i].id === id) return EXAMPLES[i];
+    return EXAMPLES[0];
+  }
+  function esc(s) {
+    return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function para(t) { return "<p>" + esc(t).replace(/\n/g, "<br>") + "</p>"; }
+  function box(zh, en, body) {
+    return '<div class="sample-box"><strong>' + esc(zh) + (en ? '<span class="zh">' + esc(en) + "</span>" : "") + "</strong>" + body + "</div>";
+  }
+  function renderExamplePicker() {
+    var boxEl = document.getElementById("ex-picker");
+    boxEl.innerHTML = "";
+    EXAMPLES.forEach(function (ex) {
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "ex-pick";
+      btn.setAttribute("aria-pressed", ex.id === selectedExampleId ? "true" : "false");
+      btn.innerHTML = '<span class="strand">' + esc(ex.strandEn) + " · " + esc(ex.strand) + "</span><span>" + esc(ex.titleEn) + '</span><span class="zh">' + esc(ex.titleZh) + "</span>";
+      btn.addEventListener("click", function () { selectedExampleId = ex.id; renderExamplePicker(); renderExampleBody(); });
+      boxEl.appendChild(btn);
+    });
+  }
+  function renderExampleBody() {
+    var ex = getExample(selectedExampleId);
+    var el = document.getElementById("example-body");
+    var html = '<p class="hint">' + esc(ex.sourceEn) + '<span class="zh">' + esc(ex.sourceZh) + "</span></p>";
+    html += '<div class="ex-step"><h3>Phase 1<span class="zh">階段 1</span></h3>';
+    html += box("Topic", "題目", "<p>" + esc(ex.titleEn) + '</p><p class="zh">' + esc(ex.titleZh) + "</p>");
+    html += box("Strand", "範疇", "<p>" + esc(ex.strandEn) + " · " + esc(ex.strand) + "</p>");
+    html += box("Inquiry question", "探究問題", para(ex.question));
+    html += box("Objectives", "目標", para(ex.objective));
+    html += box("Methods", "收集計劃", para(ex.collectWhat));
+    html += '</div><div class="ex-step"><h3>Phases 2–3<span class="zh">階段 2–3</span></h3>';
+    html += box("Findings", "發現", para(ex.findings));
+    html += box("Analysis", "分析", para(ex.analysis));
+    html += box("Recommendation", "建議", para(ex.recommendation));
+    html += '</div><div class="ex-step"><h3>Phase 4<span class="zh">階段 4</span></h3>';
+    html += box("Presentation", "匯報", para(ex.presentation));
+    html += box("Reflection", "反思", para(ex.reflection));
+    html += "</div>";
+    el.innerHTML = html;
+  }
+function exampleToState(ex) {
+    var s = defaultState();
+    s.members = "示範組（請改為你們的組員姓名） Demo group (change to your names)";
+    s.roles = { leader: "同學甲", data: "同學乙", analyst: "同學丙", design: "同學丁", proof: "同學戊" };
+    s.topic = ex.topic; s.strand = ex.strand; s.question = ex.question; s.objective = ex.objective;
+    s.kinds = { secondary: !!ex.kinds.secondary, survey: !!ex.kinds.survey, interview: !!ex.kinds.interview, visit: !!ex.kinds.visit };
+    s.toolsPlan = ex.collectWhat;
+    s.secondaryLog = "（示範）已查閱可靠公開資料／新聞，並記下來源與日期。";
+    s.primaryLog = ex.collectWhat;
+    s.dataDraft = ex.findings;
+    s.progressLog = "（示範）次級資料已完成；初級資料進行中。";
+    s.intro = ex.question;
+    s.findings = ex.findings;
+    s.analysis = ex.analysis;
+    s.recommendation = ex.recommendation;
+    s.references = "（示範）請改為你們的真實來源名稱及日期。";
+    s.pptOutline = ex.presentation;
+    s.qaPrep = "問：證據是否足夠？答：我們有次級來源及初級問卷／觀察。";
+    s.reflectCivic = ex.reflection;
+    s.reflectAnalysis = "學會按探究問題整理發現。";
+    s.reflectTeam = "明白須每人履行角色，才能齊備提交。";
+    s.rubric = ["done","done","done","done","done","done","done"];
+    s.check1 = { group: true, topic: true, roles: true, question: true, tools: true, proposal: true };
+    s.check2 = { secondary: true, primary: true, organise: true, log: true };
+    s.check3 = { againstQ: true, roots: true, sections: true, final: true };
+    s.check4 = { ppt: true, poster: true, oral: true, reflect: true };
+    return s;
+  }
+  function setExampleOpen(open) {
+    var panel = document.getElementById("full-example");
+    var btn = document.getElementById("toggle-example");
+    panel.hidden = !open;
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.innerHTML = "";
+    btn.appendChild(document.createTextNode(open ? "收起完整例子" : "查看完整例子"));
+    var span = document.createElement("span"); span.className = "en";
+    span.textContent = open ? "Hide full example" : "See a full example";
+    btn.appendChild(span);
+    if (open) { renderExamplePicker(); renderExampleBody(); var h = panel.querySelector("h2"); if (h) h.focus(); }
+  }
+  function loadExampleDemo() {
+    var ex = getExample(selectedExampleId);
+    var ok = confirm("Overwrite with sample \"" + ex.titleEn + "\"? Demo only - do not hand in as your work.\n\n確定以「" + ex.titleZh + "」覆蓋目前答案？（示範用，請勿當作課業提交）");
+    if (!ok) return;
+    var keep = state.step;
+    state = exampleToState(ex);
+    state.step = keep;
+    fillForm(); save(); setExampleOpen(false); go(0, true);
+    status("Sample loaded (demo). / 已填入範例（示範）。");
+  }
+  document.getElementById("toggle-example").addEventListener("click", function () {
+    setExampleOpen(document.getElementById("full-example").hidden);
+  });
+  document.getElementById("close-example").addEventListener("click", function () { setExampleOpen(false); });
+  document.getElementById("fill-example-btn").addEventListener("click", function () {
+    if (document.getElementById("full-example").hidden) { setExampleOpen(true); status("Pick a sample first. / 請先選擇範例。"); return; }
+    loadExampleDemo();
+  });
+  document.getElementById("fill-example-btn-2").addEventListener("click", loadExampleDemo);
+
+  function emptyDash(v) {
+    return filled(v) ? String(v).trim() : "(empty) / （未填寫）";
+  }
+  function checklistLines(obj, labels) {
+    return labels.map(function (pair) {
+      var on = !!(obj && obj[pair[0]]);
+      return (on ? "☑ " : "☐ ") + pair[1];
+    }).join("\n");
+  }
+  function kindsLine() {
+    var parts = [];
+    if (state.kinds.secondary) parts.push("Secondary / 次級資料");
+    if (state.kinds.survey) parts.push("Survey / 問卷");
+    if (state.kinds.interview) parts.push("Interview / 訪問");
+    if (state.kinds.visit) parts.push("Site visit / observation / 實地／觀察");
+    return parts.length ? parts.join("； ") : "(none selected) / （尚尚未選擇擇）";
+  }
+  function todayHK() {
+    try {
+      return new Intl.DateTimeFormat("zh-HK", { year: "numeric", month: "2-digit", day: "2-digit", weekday: "short" }).format(new Date());
+    } catch (e) {
+      var d = new Date();
+      return d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+    }
+  }
+  function block(titleZh, titleEn, body) {
+    var en = titleEn ? ('<span class="zh">' + esc(titleEn) + "</span>") : "";
+    return '<div class="log-block"><h3>' + esc(titleZh) + en + '</h3><p class="pre">' + esc(body).replace(/\n/g, "<br>") + "</p></div>";
+  }
+  function buildPhaseLog(phase) {
+    var titles = [
+      ["Phase 1: Topic selection and planning", "階段 1：選題與計劃"],
+      ["Phase 2: Data collection and field research", "階段 2：收集資料與實地研究"],
+      ["Phase 3: Data analysis and report writing", "階段 3：分析資料與撰寫報告"],
+      ["Phase 4: Presentation and reflection", "階段 4：匯報與反思"]
+    ];
+    document.getElementById("phase-log-sub").innerHTML = esc(titles[phase][0]) + '<span class="zh">' + esc(titles[phase][1]) + "</span>";
+    document.getElementById("phase-log-meta").textContent =
+      "Project topic / 專題題目: " + emptyDash(state.topic) +
+      " | Group / 組員: " + emptyDash(state.members) +
+      " | Date / 日期: " + todayHK();
+
+    var html = "";
+    html += block("Members", "組員", emptyDash(state.members));
+    html += block("Roles", "角色",
+      "Leader / 組長: " + emptyDash(state.roles.leader) + "\n" +
+      "Data / 資料: " + emptyDash(state.roles.data) + "\n" +
+      "Analyst / 分析: " + emptyDash(state.roles.analyst) + "\n" +
+      "Design / 設計: " + emptyDash(state.roles.design) + "\n" +
+      "Proof / 校對: " + emptyDash(state.roles.proof)
+    );
+
+    if (phase === 0) {
+      html += block("Topic", "題目", emptyDash(state.topic));
+      html += block("Strand", "範疇", emptyDash(state.strand));
+      html += block("Inquiry question", "探究問題", emptyDash(state.question));
+      html += block("Objectives", "研究目標", emptyDash(state.objective));
+      html += block("Methods", "收集方法", kindsLine());
+      html += block("Tool drafts", "工具草稿", emptyDash(state.toolsPlan));
+      html += block("Phase 1 checklist", "階段 1 核對", checklistLines(state.check1, [
+        ["group", "Group formed / 已分組"],
+        ["topic", "Topic chosen / 已選題"],
+        ["roles", "Roles assigned / 已分工"],
+        ["question", "Questions & objectives / 已撰寫問題／目標"],
+        ["tools", "Tools drafted / 已設計工具"],
+        ["proposal", "Proposal ready / 計劃書準備好"]
+      ]));
+    } else if (phase === 1) {
+      html += block("Secondary data log", "次級資料紀錄", emptyDash(state.secondaryLog));
+      html += block("Primary data log", "初級資料紀錄", emptyDash(state.primaryLog));
+      html += block("Preliminary summary", "初步整理", emptyDash(state.dataDraft));
+      html += block("Progress log", "中期進度紀錄", emptyDash(state.progressLog));
+      html += block("Phase 2 checklist", "階段 2 核對", checklistLines(state.check2, [
+        ["secondary", "Secondary collected / 次級資料"],
+        ["primary", "Primary done / 初級資料"],
+        ["organise", "Organised / 已整理"],
+        ["log", "Progress log written / 進度紀錄"]
+      ]));
+    } else if (phase === 2) {
+      html += block("Introduction", "導言", emptyDash(state.intro));
+      html += block("Findings", "發現", emptyDash(state.findings));
+      html += block("Analysis", "分析", emptyDash(state.analysis));
+      html += block("Recommendations", "建議", emptyDash(state.recommendation));
+      html += block("References", "參考資料", emptyDash(state.references));
+      html += block("Phase 3 checklist", "階段 3 核對", checklistLines(state.check3, [
+        ["againstQ", "Against questions / 對應探究問題"],
+        ["roots", "Roots & recommendations / 成因與建議"],
+        ["sections", "Five sections / 五個部分齊"],
+        ["final", "Final report ready / 報告準備交"]
+      ]));
+    } else if (phase === 3) {
+      html += block("Presentation outline", "匯報大綱", emptyDash(state.pptOutline));
+      html += block("Q&A prep", "預計問答", emptyDash(state.qaPrep));
+      html += block("Civic awareness", "反思：公民意識", emptyDash(state.reflectCivic));
+      html += block("Analytical skills", "反思：分析能力", emptyDash(state.reflectAnalysis));
+      html += block("Teamwork", "反思：小組合作", emptyDash(state.reflectTeam));
+      html += block("Self-check", "自我檢查",
+        rubricNames.map(function (name, i) { return name + ": " + rubricWord(state.rubric[i]); }).join("\n")
+      );
+      html += block("Phase 4 checklist", "階段 4 核對", checklistLines(state.check4, [
+        ["ppt", "PPT ready / PPT 已備"],
+        ["poster", "Poster ready / 海報已備妥"],
+        ["oral", "Talk practised / 8 分鐘練過"],
+        ["reflect", "Reflection written / 反思已寫"]
+      ]));
+    }
+    document.getElementById("phase-log-body").innerHTML = html;
+  }
+
+  var printMode = null; // 'summary' | 'phase'
+  
+  function showPhaseLog(phase) {
+    try {
+      buildPhaseLog(phase);
+    } catch (err) {
+      var bodyEl = document.getElementById("phase-log-body");
+      if (bodyEl) bodyEl.innerHTML = '<div class="log-block"><p class="pre">產生日誌時發生錯誤 Error building log: ' + esc(String(err && err.message ? err.message : err)) + "</p></div>";
+    }
+    var log = document.getElementById("phase-log");
+    if (!log) { status("Phase log panel missing. / 找不到日誌面板。"); return; }
+    log.hidden = false;
+    log.removeAttribute("hidden");
+    log.style.display = "block";
+    document.querySelectorAll("[data-panel]").forEach(function (panel) { panel.hidden = true; });
+    var summary = document.getElementById("panel-summary");
+    if (summary) summary.hidden = true;
+    window.scrollTo(0, 0);
+    var h = log.querySelector("h1");
+    if (h) {
+      h.setAttribute("tabindex", "-1");
+      try { h.focus(); } catch (e2) {}
+    }
+    status("Phase A4 data log ready. / 已產生本階段 A4 資料日誌。");
+  }
+  function closePhaseLog() {
+    var log = document.getElementById("phase-log");
+    log.hidden = true;
+    log.setAttribute("hidden", "");
+    log.style.display = "";
+    go(state.step, true);
+  }
+  function printPhaseLog() {
+    printMode = "phase";
+    document.body.classList.add("printing-phase-log");
+    document.body.classList.remove("printing-summary");
+    document.getElementById("phase-log").hidden = false;
+    window.print();
+  }
+  function printSummary() {
+    printMode = "summary";
+    document.body.classList.add("printing-summary");
+    document.body.classList.remove("printing-phase-log");
+    window.print();
+  }
+  window.addEventListener("afterprint", function () {
+    document.body.classList.remove("printing-phase-log", "printing-summary");
+    printMode = null;
+  });
+
+  document.querySelectorAll("[data-phase-log]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      showPhaseLog(Number(btn.getAttribute("data-phase-log")));
+    });
+  });
+  document.getElementById("phase-log-print-btn").addEventListener("click", printPhaseLog);
+  document.getElementById("phase-log-close-btn").addEventListener("click", closePhaseLog);
+
+  document.getElementById("print-btn").addEventListener("click", printSummary);
+  document.getElementById("download-btn").addEventListener("click", function () {
+    var lines = ["S2 CES Project Learning", "Members: " + state.members, "Topic: " + state.topic, "Question: " + state.question, "Findings: " + state.findings, "Recommendation: " + state.recommendation];
+    var blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "ces-s2-project.txt";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
+  });
+  document.getElementById("clear-btn").addEventListener("click", function () {
+    if (!confirm("Clear and start over?\n\n確定清除並重新開始？")) return;
+    state = defaultState();
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    fillForm(); go(0, true); status("Cleared. / 已清除。");
+  });
+
+  var start = state.step;
+  if (typeof start !== "number" || start < 0 || start > 4) start = 0;
+  fillForm(); go(start, false);
+})();
+</script>
+</body>
+</html>
