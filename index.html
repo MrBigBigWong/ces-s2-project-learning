@@ -68,6 +68,7 @@ footer{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}
 .sample-box strong{display:block;font-size:14px;color:var(--accent-dark);margin-bottom:2px}
 .warn-note{background:#fff3e8;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0}
 .checklist{list-style:none;padding:0;margin:8px 0}.checklist li{margin:6px 0}
+.guide-q{background:#fbf7f2;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0}.guide-q h3{margin-top:0}.guide-q ol{margin:8px 0 0;padding-left:1.3em}.guide-q li{margin:6px 0}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 @media(max-width:640px){body{font-size:17px}h1{font-size:1.22rem}.steps{grid-template-columns:repeat(2,1fr)}.wrap{padding:12px 12px 48px}}
@@ -265,28 +266,71 @@ footer{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}
     <h2 tabindex="-1">Data analysis and report writing<span class="zh">分析資料與撰寫報告</span></h2>
     <div class="guide-note">
       <p class="tag">Following teacher guidelines · Phase 3<span class="zh">依照老師指引 Phase 3</span></p>
-      <p>Goal: synthesise findings, evaluate social impacts, propose constructive solutions. Submit the <strong>final written report</strong>.</p>
-      <p class="zh">目標：綜合發現、評估社會影響、提出有建設性的建議。要交：<strong>最終書面報告</strong>。</p>
-      <p>Report structure: Introduction, Findings, Analysis, Recommendations, References.</p>
-    <p class="zh">報告結構：導言、發現、分析、建議、參考資料。</p>
+      <p>Goal: put your findings together, explain what they mean for society, and suggest something useful people can do. Submit the <strong>final written report</strong>.</p>
+      <p class="zh">目標：整理發現、說明對社會的意義，並提出可行建議。要交：<strong>最終書面報告</strong>。</p>
+      <p>Report parts: Introduction, Findings, Analysis, Recommendations, References.</p>
+      <p class="zh">報告部分：導言、發現、分析、建議、參考資料。</p>
+    </div>
+
+    <h3>Introduction tips<span class="zh">導言提示</span></h3>
+    <div class="guide-q">
+      <ol>
+        <li>What is your topic in one clear sentence?<span class="zh">你的題目用一句清楚的話怎樣說？</span></li>
+        <li>Why should Form 2 students care about this?<span class="zh">為什麼中二學生應該關心這件事？</span></li>
+        <li>What inquiry question are you trying to answer?<span class="zh">你想回答的探究問題是甚麼？</span></li>
+      </ol>
     </div>
     <label for="intro">Introduction<span class="zh">導言</span></label>
-    <textarea id="intro" data-bind="intro" placeholder="Why the topic matters; your questions&#10;題目為何重要、探究問題是甚麼"></textarea>
-    <label for="findings">Findings (linked to inquiry questions)<span class="zh">發現 Findings</span></label>
-    <textarea id="findings" data-bind="findings" placeholder="初級＋次級發現；至少兩個不同看法"></textarea>
-    <label for="analysis">Analysis (root causes, impacts, perspectives)<span class="zh">分析 Analysis</span></label>
-    <textarea id="analysis" data-bind="analysis" placeholder="解釋原因；不要只抄錄數字"></textarea>
-    <label for="recommendation">Recommendations (who does what; realistic; civic-minded)<span class="zh">建議 Recommendations</span></label>
-    <p class="hint">Submit an <strong>oral presentation (PPT and poster)</strong> plus an <strong>individual reflection log</strong>. About <strong>8 minutes</strong>, plus Q&amp;A and peer evaluation.</p>
-    <p class="zh">不要只寫「大家提高意識」。須說明誰（WHO）做甚麼（WHAT）。</p>
-    <p class="hint zh">Avoid only “everyone should be more aware”. Say WHO does WHAT.</p>
-    <textarea id="recommendation" data-bind="recommendation" placeholder="誰可以做一件具體的事，因為我們發現……"></textarea>
-    <label for="references">References (source names + dates)<span class="zh">參考資料 References</span></label>
-    <textarea id="references" data-bind="references" placeholder="列出次級來源"></textarea>
+    <textarea id="intro" data-bind="intro" placeholder="Why this topic matters; your inquiry question&#10;為甚麼這個題目重要；你的探究問題"></textarea>
+
+    <h3>Findings tips<span class="zh">發現提示</span></h3>
+    <div class="guide-q">
+      <ol>
+        <li>What did your survey, interview, visit, or reading show?<span class="zh">問卷、訪問、考察或閱讀顯示了甚麼？</span></li>
+        <li>Write at least two different views (not only your own).<span class="zh">至少寫兩個不同看法（不要只有自己的）。</span></li>
+        <li>Which finding is strongest, and what evidence supports it?<span class="zh">哪一項發現最有力？有甚麼證據支持？</span></li>
+      </ol>
+    </div>
+    <label for="findings">Findings (linked to your inquiry question)<span class="zh">發現（連繫探究問題）</span></label>
+    <textarea id="findings" data-bind="findings" placeholder="Primary + secondary findings; at least two views&#10;初級與次級發現；至少兩個看法"></textarea>
+
+    <h3>Analysis guiding questions (answer these in the box)<span class="zh">分析引導問題（請在方格中回答）</span></h3>
+    <div class="guide-q" id="analysis-guide">
+      <p class="hint">Use plain words. Explain your data — do not only copy numbers.<span class="zh">用淺白句子。解釋資料，不要只抄數字。</span></p>
+      <ol>
+        <li>What patterns or repeated points appear in your data?<span class="zh">資料中有哪些重複出現的情況或重點？</span></li>
+        <li>Which finding is the strongest, and why do you think so?<span class="zh">哪一項發現最有力？為甚麼你這樣想？</span></li>
+        <li>How do two different views differ? Who said what?<span class="zh">兩個不同看法有何分別？誰說了甚麼？</span></li>
+        <li>How do your findings answer your inquiry question?<span class="zh">這些發現怎樣回答你的探究問題？</span></li>
+        <li>What made this happen? What is a main reason (not only one person’s fault)?<span class="zh">為甚麼會發生？主要原因是甚麼（不要只怪一個人）？</span></li>
+        <li>What are the effects? Who is affected (students, family, school, community…)?<span class="zh">有甚麼影響？誰受到影響（學生、家庭、學校、社區……）？</span></li>
+        <li>What is still uncertain or missing in your evidence?<span class="zh">哪些地方仍然不清楚，或證據仍然不足？</span></li>
+        <li>How does your evidence support the suggestion you will make next?<span class="zh">這些證據怎樣支持你下一步的建議？</span></li>
+      </ol>
+    </div>
+    <label for="analysis">Analysis (explain what your findings mean)<span class="zh">分析（說明發現的意思）</span></label>
+    <textarea id="analysis" data-bind="analysis" placeholder="Answer the guiding questions above in your own words&#10;用自己的句子回答上面的引導問題"></textarea>
+
+    <h3>Recommendation tips<span class="zh">建議提示</span></h3>
+    <div class="guide-q">
+      <ol>
+        <li>Who can do something concrete?<span class="zh">誰可以做一件具體的事？</span></li>
+        <li>What exactly should they do, and when?<span class="zh">他們具體應做甚麼？何時做？</span></li>
+        <li>How does this follow from your findings?<span class="zh">這建議怎樣根據你的發現提出？</span></li>
+        <li>What can this suggestion NOT fix?<span class="zh">這建議解決不了甚麼？</span></li>
+      </ol>
+      <p class="hint">Do not only write “everyone should care more”. Say who does what.<span class="zh">不要只寫「大家多關心」。須說明誰做甚麼。</span></p>
+    </div>
+    <label for="recommendation">Recommendations (who does what; realistic)<span class="zh">建議（誰做甚麼；可行）</span></label>
+    <textarea id="recommendation" data-bind="recommendation" placeholder="Who can do one clear action, because we found…&#10;誰可以做一件清楚的事，因為我們發現……"></textarea>
+
+    <label for="references">References (source names + dates)<span class="zh">參考資料（來源名稱與日期）</span></label>
+    <textarea id="references" data-bind="references" placeholder="List secondary sources&#10;列出次級來源"></textarea>
+
     <h3>Phase 3 deliverable checklist<span class="zh">階段 3 交件核對</span></h3>
     <ul class="checklist">
       <li><label><input type="checkbox" data-bind="check3.againstQ"> Findings checked against inquiry questions<span class="zh">發現已對應探究問題</span></label></li>
-      <li><label><input type="checkbox" data-bind="check3.roots"> Root causes and realistic recommendations<span class="zh">已寫成因與務實建議</span></label></li>
+      <li><label><input type="checkbox" data-bind="check3.roots"> Main reasons explained and suggestion is realistic<span class="zh">已說明主要原因，建議可行</span></label></li>
       <li><label><input type="checkbox" data-bind="check3.sections"> All five sections present<span class="zh">五個部分齊備：導言／發現／分析／建議／參考</span></label></li>
       <li><label><input type="checkbox" data-bind="check3.final"> Final written report ready<span class="zh">最終書面報告已準備提交</span></label></li>
     </ul>
@@ -797,14 +841,28 @@ function exampleToState(ex) {
     } else if (phase === 2) {
       html += block("Introduction", "導言", emptyDash(state.intro));
       html += block("Findings", "發現", emptyDash(state.findings));
-      html += block("Analysis", "分析", emptyDash(state.analysis));
+      html += block(
+        "Analysis guiding questions (for your writing)",
+        "分析引導問題（寫作時對照）",
+        [
+          "1. What patterns appear in your data? / 資料中有哪些重複情況？",
+          "2. Which finding is strongest, and why? / 哪一項發現最有力？為甚麼？",
+          "3. How do two views differ? / 兩個看法有何分別？",
+          "4. How do findings answer your inquiry question? / 發現怎樣回答探究問題？",
+          "5. What made this happen? Main reason? / 為甚麼會發生？主要原因？",
+          "6. Effects — who is affected? / 有甚麼影響？誰受影響？",
+          "7. What is still uncertain? / 哪些仍不清楚？",
+          "8. How does evidence support your suggestion? / 證據怎樣支持建議？"
+        ].join("\n")
+      );
+      html += block("Analysis (your answers)", "分析（你的回答）", emptyDash(state.analysis));
       html += block("Recommendations", "建議", emptyDash(state.recommendation));
       html += block("References", "參考資料", emptyDash(state.references));
       html += block("Phase 3 checklist", "階段 3 核對", checklistLines(state.check3, [
-        ["againstQ", "Against questions / 對應探究問題"],
-        ["roots", "Roots & recommendations / 成因與建議"],
-        ["sections", "Five sections / 五個部分齊"],
-        ["final", "Final report ready / 報告準備交"]
+        ["againstQ", "Findings match inquiry question / 發現對應探究問題"],
+        ["roots", "Main reasons explained; suggestion realistic / 已說明主要原因；建議可行"],
+        ["sections", "Five sections present / 五個部分齊備"],
+        ["final", "Final report ready / 報告已準備提交"]
       ]));
     } else if (phase === 3) {
       html += block("Presentation outline", "匯報大綱", emptyDash(state.pptOutline));
